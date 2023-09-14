@@ -26,9 +26,11 @@ class TransactionDB {
     var store = intMapStoreFactory.store("express");
     //json
     var keyID = store.add(db, {
-      "title": statement.title,
+      "name": statement.name,
+      "auName": statement.auName,
+      "date": statement.date,
+      "type": statement.type,
       "amount": statement.amount,
-      "date": statement.date.toIso8601String()
     });
     db.close();
     return keyID;

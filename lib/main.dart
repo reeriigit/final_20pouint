@@ -81,9 +81,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text(data.amount.toString()),
                         ),
                       ),
-                      title: Text(data.title),
+                      title: Text(data.name+"\n"),
                       subtitle: 
-                      Text(DateFormat("dd/MM/yyyy").format(data.date)),
+                      Text(
+                        data.auName+
+                        "\n"+
+                        data.date+
+                        "\n"+
+                        data.type+
+                        "\n"+
+                        data.amount.toString()+
+                        "\n"
+
+                        ),
                     ),
                   );
                 });
