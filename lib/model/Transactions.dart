@@ -1,9 +1,15 @@
+
+
+// import 'package:flutter/material.dart';
+import 'dart:io';
+
 class Transactions{
   String name;
   String auName;
   String date;
-   String type;
+  String type;
   double amount;
+  File image;
   Transactions(
     {
       required this.name,
@@ -11,6 +17,7 @@ class Transactions{
       required this.date,
       required this.type,
       required this.amount,
+      required this.image,
       
      
     }

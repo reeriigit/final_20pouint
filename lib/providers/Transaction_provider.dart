@@ -18,7 +18,7 @@ class TransactionProvider with ChangeNotifier {
     var db = TransactionDB(dbname: "Transactions.db");
 
     //save data
-    await db.insertData(statement);
+    await db.insertData(statement,);
 
     //pull data then select
     await db.loadAllDta();

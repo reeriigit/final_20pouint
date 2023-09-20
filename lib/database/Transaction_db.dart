@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
@@ -20,21 +21,32 @@ class TransactionDB {
     return db;
   }
   //save data
+Future<int> insertData(Transactions statement) async {
+  var db = await this.openDatabase();
+  var store = intMapStoreFactory.store("express");
 
-  Future<int> insertData(Transactions statement) async {
-    var db = await this.openDatabase();
-    var store = intMapStoreFactory.store("express");
-    //json
-    var keyID = store.add(db, {
-      "name": statement.name,
-      "auName": statement.auName,
-      "date": statement.date,
-      "type": statement.type,
-      "amount": statement.amount,
-    });
-    db.close();
-    return keyID;
-  }
+  // Convert the File to Uint8List
+  Uint8List fileBytes = await statement.image.readAsBytes();
+  
+  // Convert the Uint8List to List<int>
+  List<int> intList = fileBytes.toList();
+
+  // Add the data to the store
+  var keyID = store.add(db, {
+    "name": statement.name,
+    "auName": statement.auName,
+    "date": statement.date,
+    "type": statement.type,
+    "amount": statement.amount,
+    "image": intList, // Store the List<int>
+  });
+
+  // Close the database
+  await db.close();
+
+  return keyID;
+}
+
 
   //create method pull data
   Future<bool> loadAllDta() async {

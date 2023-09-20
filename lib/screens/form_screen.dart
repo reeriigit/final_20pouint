@@ -1,6 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_conn_database/main.dart';
 import 'package:flutter_conn_database/model/Transactions.dart';
 import 'package:flutter_conn_database/providers/Transaction_provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -14,9 +17,9 @@ class _FormScreenState extends State<FormScreen> {
   final auNameController = TextEditingController();
   String selectedType = 'A'; // เพิ่มตัวแปรสำหรับเก็บค่าที่เลือกจาก Dropdown
   final amountController = TextEditingController();
-
-  
   DateTime _dataTime = DateTime.now();
+  
+ 
 
   void _showDataPicker() {
     showDatePicker(
@@ -30,6 +33,19 @@ class _FormScreenState extends State<FormScreen> {
           _dataTime = value;
         });
       }
+    });
+  }
+
+ 
+  File? _selectedImage;
+  final ImagePicker _imagePicker = ImagePicker();
+
+  Future<void> _pickImageFromGallery() async {
+    final pickedImage = await _imagePicker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage == null) return;
+      _selectedImage = File(pickedImage.path);
     });
   }
 
@@ -92,6 +108,22 @@ class _FormScreenState extends State<FormScreen> {
                 decoration: InputDecoration(labelText: "Input Amount"),
                 keyboardType: TextInputType.number,
               ),
+              SizedBox(height: 20),
+            _selectedImage != null
+                ? Image.file(
+                    _selectedImage!,
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  )
+                : Placeholder(
+                    fallbackWidth: 200,
+                    fallbackHeight: 200,
+                  ),
+            TextButton(
+              onPressed: _pickImageFromGallery,
+              child: Text("Choose Image"),
+            ),
               TextButton(
                 style: ButtonStyle(
                   foregroundColor:
@@ -103,6 +135,8 @@ class _FormScreenState extends State<FormScreen> {
                   var date = _dataTime.toIso8601String();
                   var type = selectedType; // ใช้ค่าที่ถูกเลือกจาก Dropdown
                   var amount = amountController.text;
+                  
+                  
 
                   if (double.tryParse(amount) != null) {
                     Transactions statement = Transactions(
@@ -111,21 +145,19 @@ class _FormScreenState extends State<FormScreen> {
                       date: date,
                       type: type,
                       amount: double.parse(amount),
+                      image: _selectedImage ?? File('index_image.jpg'),
                     );
 
                     var provider = Provider.of<TransactionProvider>(context,
                         listen: false);
                     provider.addTransaction(statement);
-                    Navigator.pop(context);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("บันทึกข้อมูลสำเร็จ."),
-                      ),
-                    );
-                    Future.delayed(Duration(seconds: 2), () {
-                      Navigator.of(context).pop(); // สลับหน้าไปยังหน้าก่อนหน้า
-                    });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            fullscreenDialog: true,
+                            builder: (context) {
+                              return MyHomePage(title: "home_screen.dart");
+                            }));
                   }
                 },
                 child: Text("เพิ่มข้อมูล"),
