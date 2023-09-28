@@ -4,14 +4,17 @@ import 'package:flutter_conn_database/database/Transaction_db.dart';
 
 
 class TransactionProvider with ChangeNotifier {
-  List<Transactions> transactions = [
-    // Transaction(title: "หนงสือ", amount: 5000, date: DateTime.now()),
-    // Transaction(title: "กางเกง", amount: 5000, date: DateTime.now())
-  ];
+  List<Transactions> transactions = [];
 
   List<Transactions> getTransaction() {
     return transactions;
   }
+  // void initData() async{
+  //         var db=TransactionDB(dbname: "transactions.db");
+  //         //ดึงข้อมูลมาแสดงผล
+  //         transactions=await db.loadAllData();
+  //         notifyListeners();
+  //     }
 
 
   void addTransaction(Transactions statement) async {

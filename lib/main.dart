@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conn_database/providers/Transaction_provider.dart';
 import 'package:flutter_conn_database/screens/form_screen.dart';
 import 'package:flutter_conn_database/screens/home_screen.dart';
+import 'package:flutter_conn_database/screens/list_product.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(primarySwatch: Colors.orange),
+        theme: ThemeData(primarySwatch: Colors.blue),
         home: const MyHomePage(
           title: 'รายการเงิน',
         ),
@@ -42,16 +43,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
-          body: TabBarView(children: [HomeScreen(), FormScreen()]),
+          body:
+              TabBarView(children: [HomeScreen(), ListProduct(), FormScreen()]),
           bottomNavigationBar: TabBar(tabs: [
             Tab(
-              text: "รายการ",
+              icon: Icon(Icons.list_alt_sharp,color: Colors.blue,),
+              
             ),
             Tab(
-              text: "บันทึกขอมูล",
-            ) 
+              icon: Icon(Icons.home,color: Colors.blue,),
+            ),
+            Tab(
+              icon: Icon(Icons.save_rounded,color: Colors.blue,),
+            )
           ]),
         ));
   }

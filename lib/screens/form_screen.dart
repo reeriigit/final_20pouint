@@ -55,7 +55,8 @@ class _FormScreenState extends State<FormScreen> {
       appBar: AppBar(
         title: Text("แบบฟอร์มบันทึกข้อมูล"),
       ),
-      body: Padding(
+      body: SingleChildScrollView(child: 
+      Padding(
         padding: const EdgeInsets.all(12.0),
         child: Form(
           child: Column(
@@ -116,10 +117,7 @@ class _FormScreenState extends State<FormScreen> {
                     height: 200,
                     fit: BoxFit.cover,
                   )
-                : Placeholder(
-                    fallbackWidth: 200,
-                    fallbackHeight: 200,
-                  ),
+                : Text("please choose Image"),
             TextButton(
               onPressed: _pickImageFromGallery,
               child: Text("Choose Image"),
@@ -165,7 +163,7 @@ class _FormScreenState extends State<FormScreen> {
             ],
           ),
         ),
-      ),
+      ),)
     );
   }
 }

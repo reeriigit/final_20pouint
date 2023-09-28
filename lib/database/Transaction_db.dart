@@ -12,10 +12,10 @@ class TransactionDB {
   TransactionDB({required this.dbname});
 
   Future<Database> openDatabase() async {
-    //find store
-    Directory appDirectory = await getApplicationCacheDirectory();
+    //หาตำแหน่งที่จะเก็บข้อมูล
+    Directory appDirectory = await getApplicationDocumentsDirectory();
     String dbLocation = join(appDirectory.path, dbname);
-    //create database
+    // สร้าง database
     DatabaseFactory dbFactory = await databaseFactoryIo;
     Database db = await dbFactory.openDatabase(dbLocation);
     return db;
@@ -42,7 +42,7 @@ Future<int> insertData(Transactions statement) async {
   });
 
   // Close the database
-  await db.close();
+  db.close();
 
   return keyID;
 }
