@@ -45,18 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
+          backgroundColor: Colors.blue,
           body:
-              TabBarView(children: [HomeScreen(), ListProduct(), FormScreen()]),
+              TabBarView(
+                
+                children: [HomeScreen(), ListProduct(), FormScreen()]),
           bottomNavigationBar: TabBar(tabs: [
             Tab(
-              icon: Icon(Icons.list_alt_sharp,color: Colors.blue,),
+              icon: Icon(Icons.list_alt_sharp,color: Colors.black,),
               
             ),
             Tab(
-              icon: Icon(Icons.home,color: Colors.blue,),
+              icon: Icon(Icons.home,color: Colors.black,),
             ),
             Tab(
-              icon: Icon(Icons.save_rounded,color: Colors.blue,),
+              icon: Icon(Icons.save_rounded,color: Colors.black,),
             )
           ]),
         ));

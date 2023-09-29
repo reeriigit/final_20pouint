@@ -52,6 +52,7 @@ class _FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("แบบฟอร์มบันทึกข้อมูล"),
       ),
@@ -67,6 +68,7 @@ class _FormScreenState extends State<FormScreen> {
                 decoration: InputDecoration(labelText: "listName"),
               ),
               TextFormField(
+                cursorColor: Colors.white,
                 controller: auNameController,
                 decoration: InputDecoration(labelText: "Author's name"),
               ),

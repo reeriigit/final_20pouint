@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("App Creator"),
         actions: [
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
             return Center(
               child: Text(
                 "ไม่พบข้อมูล",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, color: Colors.blue),
               ),
             );
           } else {
@@ -38,9 +39,19 @@ class HomeScreen extends StatelessWidget {
               itemCount: provider.transactions.length,
               itemBuilder: (context, int index) {
                 Transactions data = provider.transactions[index];
-                return Card(
-                  elevation: 5,
-                  margin: const EdgeInsets.all(10.0),
+                return Container(
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey, // สีของเงา
+                          blurRadius: 5, // ความพร้อมนาย
+                          spreadRadius: 2, // รัศมีการกระจาย
+                          offset: Offset(0, 3), // ตำแหน่งแนวนอนและแนวตั้งของเงา
+                        ),
+                      ],
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(15)),
+                  margin: const EdgeInsets.all(5.0),
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 30,
@@ -49,8 +60,8 @@ class HomeScreen extends StatelessWidget {
                         child: data.image != null
                             ? Image.file(
                                 data.image,
-                                width: 200,
-                                height: 200,
+                                width: 300,
+                                height: 300,
                                 fit: BoxFit.cover,
                               )
                             : Placeholder(
