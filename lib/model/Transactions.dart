@@ -8,7 +8,7 @@ class Transactions{
   String auName;
   String date;
   String type;
-  double amount;
+  String detail;
   File image;
   Transactions(
     {
@@ -16,7 +16,7 @@ class Transactions{
       required this.auName,
       required this.date,
       required this.type,
-      required this.amount,
+      required this.detail,
       required this.image,
       
      

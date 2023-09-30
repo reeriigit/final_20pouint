@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("App Creator"),
         actions: [
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                           "\n" +
                           data.type +
                           "\n" +
-                          data.amount.toString() +
+                          data.detail+
                           "\n",
                     ),
                     onTap: () {

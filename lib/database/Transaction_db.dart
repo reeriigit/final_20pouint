@@ -37,7 +37,7 @@ Future<int> insertData(Transactions statement) async {
     "auName": statement.auName,
     "date": statement.date,
     "type": statement.type,
-    "amount": statement.amount,
+    "amount": statement.detail,
     "image": intList, // Store the List<int>
   });
 

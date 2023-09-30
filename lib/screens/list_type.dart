@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conn_database/model/Transactions.dart';
 import 'package:flutter_conn_database/providers/Transaction_provider.dart';
+import 'package:flutter_conn_database/screens/detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class ListType extends StatelessWidget {
@@ -11,6 +12,7 @@ class ListType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("List by Type: $type"),
       ),
@@ -30,37 +32,49 @@ class ListType extends StatelessWidget {
             itemCount: filteredTransactions.length,
             itemBuilder: (context, index) {
               Transactions data = filteredTransactions[index];
-              return Container(
-                
-                margin: const EdgeInsets.only(top: 10,left: 5,right: 5,bottom: 10),
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.blue),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5,
-                      spreadRadius: 2,
-                      offset: Offset(0, 3),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(data),
                     ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  // ignore: unnecessary_null_comparison
-                  child: data.image != null
-                      ? Image.file(
-                          data.image,
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        )
-                      : Placeholder(
-                          fallbackWidth: 200,
-                          fallbackHeight: 200,
-                        ),
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    top: 10,
+                    left: 5,
+                    right: 5,
+                    bottom: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.blue),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    // ignore: unnecessary_null_comparison
+                    child: data.image != null
+                        ? Image.file(
+                            data.image,
+                            width: double.infinity,
+                            height: double.infinity,
+                            fit: BoxFit.cover,
+                          )
+                        : Placeholder(
+                            fallbackWidth: double.infinity,
+                            fallbackHeight: double.infinity,
+                          ),
+                  ),
                 ),
               );
             },
