@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                       ),
                     ),
-                    title: Text(data.name + "\n"),
+                    title: Text(data.name),
                     subtitle: Text(
                       data.auName +
                           "\n" +

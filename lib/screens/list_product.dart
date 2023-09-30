@@ -17,7 +17,7 @@ class _ListProductState extends State<ListProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("App Creater"),
+        title: Text("Vshere"),
         actions: [
           IconButton(
             onPressed: () {
@@ -39,68 +39,125 @@ class _ListProductState extends State<ListProduct> {
           )
         ],
       ),
-      body: Consumer(builder: (context, TransactionProvider provider, widget) {
-        var count = provider.transactions.length;
-        if (count <= 0) {
-          return Center(
-            child: Text(
-              "ไม่พบข้อมูล",
-              style: TextStyle(fontSize: 20),
-            ),
-          );
-        } else {
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 10.0,
-            ),
-            itemCount: provider.transactions.length,
-            itemBuilder: (context, int index) {
-              Transactions data = provider.transactions[index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailScreen(data),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(2.0),
-                  width: 300,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.blue),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 5,
-                        spreadRadius: 2,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
+      body: Padding(
+        padding: EdgeInsets.only(top: 20.0),
+        child: Consumer(
+          builder: (context, TransactionProvider provider, widget) {
+            return Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(color: Colors.blue),
+                  child: Text("ยอดนิยม"),
+                ),
+                Expanded(
+
+                  child: ListView.builder(
+                    
+                    scrollDirection: Axis
+                        .horizontal, // Set the scroll direction to horizontal
+                    itemCount: provider.transactions.length,
+                    itemBuilder: (context, int index) {
+                      Transactions data = provider.transactions[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(data),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(2.0),
+                          width: 250,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.blue),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 5,
+                                spreadRadius: 2,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          // ignore: unnecessary_null_comparison
+                          child: data.image != null
+                              ? Image.file(
+                                  data.image,
+                                  width: 250,
+                                  height: 250,
+                                  fit: BoxFit.cover,
+                                )
+                              : Placeholder(
+                                  fallbackWidth: 200,
+                                  fallbackHeight: 200,
+                                ),
+                        ),
+                      );
+                    },
                   ),
-                  // ignore: unnecessary_null_comparison
-                  child: data.image != null
-                      ? Image.file(
-                          data.image,
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0,
+                    ),
+                    itemCount: provider.transactions.length,
+                    itemBuilder: (context, int index) {
+                      Transactions data = provider.transactions[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(data),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(2.0),
                           width: 300,
                           height: 300,
-                          fit: BoxFit.cover,
-                        )
-                      : Placeholder(
-                          fallbackWidth: 200,
-                          fallbackHeight: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.blue),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 5,
+                                spreadRadius: 2,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          // ignore: unnecessary_null_comparison
+                          child: data.image != null
+                              ? Image.file(
+                                  data.image,
+                                  width: 300,
+                                  height: 300,
+                                  fit: BoxFit.cover,
+                                )
+                              : Placeholder(
+                                  fallbackWidth: 200,
+                                  fallbackHeight: 200,
+                                ),
                         ),
+                      );
+                    },
+                  ),
                 ),
-              );
-            },
-          );
-        }
-      }),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }

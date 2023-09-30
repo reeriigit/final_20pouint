@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_conn_database/model/Transactions.dart';
 import 'package:flutter_conn_database/database/Transaction_db.dart';
@@ -5,6 +7,10 @@ import 'package:flutter_conn_database/database/Transaction_db.dart';
 
 class TransactionProvider with ChangeNotifier {
   List<Transactions> transactions = [];
+  
+  static get name => null;
+  
+  
 
   List<Transactions> getTransaction() {
     return transactions;

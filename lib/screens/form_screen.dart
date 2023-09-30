@@ -19,22 +19,25 @@ class _FormScreenState extends State<FormScreen> {
   final amountController = TextEditingController();
   DateTime _dataTime = DateTime.now();
   
+  
  
 
   void _showDataPicker() {
-    showDatePicker(
-      context: context,
-      initialDate: _dataTime,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-    ).then((value) {
-      if (value != null) {
-        setState(() {
-          _dataTime = value;
-        });
-      }
-    });
-  }
+  showDatePicker(
+    context: context,
+    initialDate: _dataTime,
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2025),
+  ).then((value) {
+    if (value != null) {
+      setState(() {
+        // Set the time portion to midnight (00:00:00)
+        _dataTime = DateTime(value.year, value.month, value.day);
+      });
+    }
+  });
+}
+
 
  
   File? _selectedImage;
@@ -132,7 +135,7 @@ class _FormScreenState extends State<FormScreen> {
                 onPressed: () {
                   var name = nameController.text;
                   var auName = auNameController.text;
-                  var date = _dataTime.toIso8601String();
+                  var date = DateFormat('yyyy-MM-dd').format(_dataTime);
                   var type = selectedType; // ใช้ค่าที่ถูกเลือกจาก Dropdown
                   var amount = amountController.text;
                   
