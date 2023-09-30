@@ -9,7 +9,8 @@ class DetailScreen extends StatelessWidget {
   final TextEditingController reviewController =
       TextEditingController(); // เพิ่ม Controller สำหรับ TextFormField
 
-  @override
+  @override // เก็บความคิดเห็นที่ผู้ใช้เพิ่มเข้ามา
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
@@ -236,3 +237,5 @@ class _StarRatingState extends State<StarRating> {
     );
   }
 }
+
+

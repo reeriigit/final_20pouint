@@ -4,6 +4,7 @@ import 'package:flutter_conn_database/model/Transactions.dart';
 import 'package:flutter_conn_database/providers/Transaction_provider.dart';
 import 'package:flutter_conn_database/screens/detail_screen.dart';
 import 'package:flutter_conn_database/screens/selectTypeShow.dart';
+import 'package:flutter_conn_database/users_profile/profilePage.dart';
 import 'package:provider/provider.dart';
 
 class ListProduct extends StatefulWidget {
@@ -35,7 +36,12 @@ class _ListProductState extends State<ListProduct> {
           ),
           IconButton(
             onPressed: () {
-              SystemNavigator.pop();
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(),
+                    ),
+                  );
             },
             icon: Icon(Icons.account_circle),
           )

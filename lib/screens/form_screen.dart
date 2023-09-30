@@ -41,8 +41,11 @@ class _FormScreenState extends State<FormScreen> {
         await _imagePicker.getImage(source: ImageSource.gallery);
 
     setState(() {
-      if (pickedImage == null) return;
-      _selectedImage = File(pickedImage.path);
+      if (pickedImage != null) {
+        setState(() {
+          _selectedImage = File(pickedImage.path);
+        });
+      }
     });
   }
 

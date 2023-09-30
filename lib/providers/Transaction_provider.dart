@@ -21,6 +21,7 @@ class TransactionProvider with ChangeNotifier {
   //         transactions=await db.loadAllData();
   //         notifyListeners();
   //     }
+  // ตัวอย่างเพิ่มความคิดเห็นใหม่
 
 
   void addTransaction(Transactions statement) async {
