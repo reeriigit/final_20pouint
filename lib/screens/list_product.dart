@@ -5,6 +5,7 @@ import 'package:flutter_conn_database/providers/Transaction_provider.dart';
 import 'package:flutter_conn_database/screens/detail_screen.dart';
 import 'package:flutter_conn_database/screens/selectTypeShow.dart';
 import 'package:flutter_conn_database/users_profile/profilePage.dart';
+import 'package:flutter_conn_database/vdos/playVdoScreen.dart';
 import 'package:flutter_conn_database/vdos/vdos_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -19,18 +20,17 @@ class _ListProductState extends State<ListProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text("Vshere"),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VdoScreen(),
-                    ),
-                  );
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VdoScreen(),
+                ),
+              );
             },
             icon: Icon(Icons.notifications),
           ),
@@ -43,11 +43,11 @@ class _ListProductState extends State<ListProduct> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfilePage(),
-                    ),
-                  );
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ),
+              );
             },
             icon: Icon(Icons.account_circle),
           )
@@ -59,55 +59,96 @@ class _ListProductState extends State<ListProduct> {
           builder: (context, TransactionProvider provider, widget) {
             return CustomScrollView(
               slivers: <Widget>[
-                SliverToBoxAdapter(
-                  child: SelectTypeShow()
-                ),
+                SliverToBoxAdapter(child: SelectTypeShow()),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, int index) {
                       Transactions data = provider.transactions[index];
                       return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(data),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 5,left: 5,right: 5,bottom: 5),
-                          width: 200,
-                          height: 200,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 3, color: Colors.blue),
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 3,
-                                spreadRadius: 1,
-                                offset: Offset(1, 2),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PlayVdoScreen(data),
                               ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            // ignore: unnecessary_null_comparison
-                            child: data.image != null
-                                ? Image.file(
-                                    data.image,
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Placeholder(
-                                    fallbackWidth: 200,
-                                    fallbackHeight: 200,
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            // color: Colors.black,
+                            padding: EdgeInsets.only(top: 5),
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 400,
+                                  height: 200,
+                                  decoration: BoxDecoration(),
+                                  child: ClipRRect(
+                                    // ignore: unnecessary_null_comparison
+                                    child: data.image != null
+                                        ? Image.file(
+                                            data.image,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : Placeholder(
+                                            fallbackWidth: 200,
+                                            fallbackHeight: 200,
+                                          ),
                                   ),
-                          ),
-                        ),
-                      );
+                                ),
+                                Card(
+                                  child: ListTile(
+                                    leading: CircleAvatar(
+                                      radius: 25,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(250),
+                                        // ignore: unnecessary_null_comparison
+                                        child: data.image != null
+                                            ? Image.file(
+                                                data.image,
+                                                width: 200,
+                                                height: 200,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Placeholder(
+                                                fallbackWidth: 200,
+                                                fallbackHeight: 200,
+                                              ),
+                                      ),
+                                    ),
+                                    title: Text(
+                                      data.detail,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18,
+                                      ),
+                                      maxLines:
+                                          2, // กำหนดจำนวนบรรทัดสูงสุดที่ Text จะแสดง (ในกรณีนี้ 2 บรรทัด)
+                                      overflow: TextOverflow
+                                          .ellipsis, // เมื่อข้อมูลเกินจำนวนบรรทัดสูงสุดจะแสดง ...
+                                    ),
+                                    subtitle: Text(
+                                        data.type +
+                                        "\n" +
+                                        data.date +
+                                        "\n" 
+                                        
+                                        ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              DetailScreen(data),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                          ));
                     },
                     childCount: provider.transactions.length,
                   ),
@@ -132,11 +173,11 @@ class _ListProductState extends State<ListProduct> {
                         },
                         child: Container(
                           margin: const EdgeInsets.all(2.0),
-                          width: 300,
-                          height: 300,
+                          width: 200,
+                          height: 400,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.blue),
+                            color: Colors.black,
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey,
@@ -153,7 +194,7 @@ class _ListProductState extends State<ListProduct> {
                                 ? Image.file(
                                     data.image,
                                     width: 200,
-                                    height: 200,
+                                    height: 400,
                                     fit: BoxFit.cover,
                                   )
                                 : Placeholder(
@@ -175,4 +216,3 @@ class _ListProductState extends State<ListProduct> {
     );
   }
 }
-

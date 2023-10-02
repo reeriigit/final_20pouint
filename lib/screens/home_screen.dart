@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+     
       appBar: AppBar(
         title: Text("App Creator"),
         actions: [
@@ -39,36 +39,27 @@ class HomeScreen extends StatelessWidget {
               itemCount: provider.transactions.length,
               itemBuilder: (context, int index) {
                 Transactions data = provider.transactions[index];
-                return Container(
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey, // สีของเงา
-                          blurRadius: 5, // ความพร้อมนาย
-                          spreadRadius: 2, // รัศมีการกระจาย
-                          offset: Offset(0, 3), // ตำแหน่งแนวนอนและแนวตั้งของเงา
-                        ),
-                      ],
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(15)),
+                return Card(
+                 
                   margin: const EdgeInsets.all(5.0),
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 30,
-                      child: FittedBox(
-                        // ignore: unnecessary_null_comparison
-                        child: data.image != null
-                            ? Image.file(
-                                data.image,
-                                width: 300,
-                                height: 300,
-                                fit: BoxFit.cover,
-                              )
-                            : Placeholder(
-                                fallbackWidth: 200,
-                                fallbackHeight: 200,
-                              ),
-                      ),
+                      child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            // ignore: unnecessary_null_comparison
+                            child: data.image != null
+                                ? Image.file(
+                                    data.image,
+                                    width: 200,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Placeholder(
+                                    fallbackWidth: 200,
+                                    fallbackHeight: 200,
+                                  ),
+                          ),
                     ),
                     title: Text(data.name),
                     subtitle: Text(
@@ -77,9 +68,8 @@ class HomeScreen extends StatelessWidget {
                           data.date +
                           "\n" +
                           data.type +
-                          "\n" +
-                          data.detail+
-                          "\n",
+                          "\n" 
+                        
                     ),
                     onTap: () {
                       Navigator.push(
