@@ -9,7 +9,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
         appBar: AppBar(
           title: Text('โปรไฟล์'),
         ),
@@ -17,9 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Container(
             margin: EdgeInsets.only(top: 10,left: 5,right: 5),
             padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blue,width: 3,)),
+            
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -29,13 +27,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.blue,
-                          blurRadius: 1,
-                          spreadRadius: 2,
+                          color: Colors.blueGrey,
+                          blurRadius: 0.1,
+                          spreadRadius: 1,
                           offset: Offset(0, 1),
                         ),
                       ],
-                      border: Border.all(width: 5, color: Colors.blue),
+                      // border: Border.all(width: 5, color: Colors.blue),
                       borderRadius: BorderRadius.circular(100)),
                   width: 200,
                   height: 200,
@@ -48,12 +46,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(height: 20),
                 Text(
                   'ชื่อของคุณ',
-                  style: TextStyle(fontSize: 24,color: Colors.white),
+                  style: TextStyle(fontSize: 24,color: Colors.black),
                 ),
                 SizedBox(height: 10),
                 Text(
                   'อีเมล: email@example.com', // เปลี่ยนเป็นอีเมลของคุณ
-                  style: TextStyle(fontSize: 16,color: Colors.white),
+                  style: TextStyle(fontSize: 16,color: Colors.black),
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(

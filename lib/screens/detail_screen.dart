@@ -13,7 +13,7 @@ class DetailScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         appBar: AppBar(
           title: Text(data.name),
         ),
@@ -25,173 +25,231 @@ class DetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 400,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue),
                     borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          data.name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17.0,
-                            fontStyle: FontStyle.italic,
-                            color: Colors.white,
-                          ),
-                        ),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 0.1,
+                        spreadRadius: 1,
+                        offset: Offset(0, 1),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        // ignore: unnecessary_null_comparison
-                        child: data.image != null
-                            ? Image.file(
-                                data.image,
-                                width: 300,
-                                height: 300,
-                                fit: BoxFit.cover,
-                              )
-                            : Placeholder(
-                                fallbackWidth: 200,
-                                fallbackHeight: 200,
-                              ),
-                      ),
-                      Center(
-                        child: Flex(
-                          direction: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: Card(
-                                color: Colors.blue,
-                                child: ListTile(
-                                  title: Text(
-                                    "เข้ารับชม",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  trailing: Icon(
-                                    Icons.arrow_right_rounded,
-                                    color: Colors.white,
-                                  ),
-                                  onTap: () {
-                                    // ทำอะไรก็ตามที่คุณต้องการเมื่อคลิกที่ "เข้ารับชม"
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
                     ],
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.all(2.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            data.auName,
-                            textAlign: TextAlign.justify,
-                            style:
-                                TextStyle(fontSize: 16.0, color: Colors.white),
-                          ),
-                        ),
-                      ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      // ignore: unnecessary_null_comparison
+                      child: data.image != null
+                          ? Image.file(
+                              data.image,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                          : Placeholder(
+                              fallbackWidth: 200,
+                              fallbackHeight: 200,
+                            ),
                     ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.all(2.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            data.type,
-                            textAlign: TextAlign.justify,
-                            style:
-                                TextStyle(fontSize: 16.0, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 Container(
-                  margin: const EdgeInsets.all(2.0),
-                  width: 400,
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(top: 10),
+                  width: double.infinity,
+                  height: 400,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue),
                     borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      data.date,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 16.0, color: Colors.white),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(2.0),
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    border: Border.all(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      data.detail,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 16.0, color: Colors.white),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: StarRating(),
-                ),
-                Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.blue)),
-                  child: TextFormField(
-                    controller: reviewController, // กำหนด Controller
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      labelText: "Description Satisfaction",
-                      labelStyle: TextStyle(
-                        color: Colors.white,
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 0.1,
+                        spreadRadius: 1,
+                        offset: Offset(0, 1),
                       ),
-                      alignLabelWithHint: true,
-                      contentPadding: EdgeInsets.symmetric(vertical: 0.0),
-                      hintText: "Enter your description here",
-                      hintStyle: TextStyle(
-                        color: Colors.white,
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Discription",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w800),
                       ),
-                      filled: true,
-                      fillColor: Colors.black,
-                    ),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
+                      Container(
+                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        child: Text(
+                          data.detail,
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 200,
+                            width: 150,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    "Name ",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    "Athor Name ",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    "Date",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    "Type ",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 200,
+                            width: 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 9),
+                                  child: Text(
+                                    data.name,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    data.auName,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    data.date,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    data.type,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          //
+                        ],
+                      ),
+                      //สรุปคนดู
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 20,right: 20),
+                            child: Text(
+                              "2,423,426",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20,right: 20),
+                            child: Text(
+                              "12,424,663",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20,right: 10),
+                            child: Text(
+                              data.date,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15),
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 40,right: 40),
+                            child: Text(
+                              "ชอบ",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 40,right: 40),
+                            child: Text(
+                              "ยอดดู",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 40,right: 10),
+                            child: Text(
+                              "date",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15),
+                            ),
+                          )
+                        ],
+                      ),
+                      //จบสรุปคนดู
+                    ],
                   ),
                 ),
               ],
@@ -237,5 +295,3 @@ class _StarRatingState extends State<StarRating> {
     );
   }
 }
-
-

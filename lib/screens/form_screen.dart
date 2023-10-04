@@ -52,13 +52,11 @@ class _FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text("แบบฟอร์มบันทึกข้อมูล"),
-      ),
+      // backgroundColor: Colors.black,
+      
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.only(left: 12,top: 50,right: 12),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,21 +66,30 @@ class _FormScreenState extends State<FormScreen> {
                   child: Container(
                     padding: EdgeInsets.all(0.0),
                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 0.1,
+                              spreadRadius: 1,
+                              offset: Offset(0, 1),
+                            ),
+                          ],
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(width: 3, color: Colors.blue),
+                      // border: Border.all(width: 3, color: Colors.black),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: _selectedImage != null
                           ? Image.file(
                               _selectedImage!,
-                              width: 200,
-                              height: 200,
+                              width: double.infinity,
+                              height: 250,
                               fit: BoxFit.cover,
                             )
                           : Container(
-                              width: 200,
-                              height: 200,
+                              width: double.infinity,
+                              height: 250,
                               margin: EdgeInsets.all(10),
                               child: Center(
                                 child: Text(
@@ -94,38 +101,67 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                 ),
+                 Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      ),
+                  child: TextFormField(
+                    controller: detailController,
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                    decoration: InputDecoration(
+                      labelText: "Description",
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      alignLabelWithHint: true,
+                      contentPadding: EdgeInsets.symmetric(vertical: 20.0),
+                      hintText: "Enter your description here",
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                  ),
+                ),
                 TextFormField(
-                  cursorColor: Colors.white,
+                  cursorColor: Colors.black,
                   controller: nameController,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   decoration: InputDecoration(
-                    hintStyle: TextStyle(color: Colors.white),
-                    labelText: "listName",
-                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: Colors.black),
+                    labelText: "Name",
+                    labelStyle: TextStyle(color: Colors.black),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
                 TextFormField(
-                  cursorColor: Colors.white,
+                  cursorColor: Colors.black,
                   controller: auNameController,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   decoration: InputDecoration(
-                    labelStyle: TextStyle(color: Colors.white),
-                    labelText: "listNameAth",
+                    hintStyle: TextStyle(color: Colors.black),
+                    labelText: "Athor Name",
+                    labelStyle: TextStyle(color: Colors.black),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
@@ -133,7 +169,7 @@ class _FormScreenState extends State<FormScreen> {
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(5),
                     color: Colors.blue,
                   ),
                   child: TextButton(
@@ -158,17 +194,17 @@ class _FormScreenState extends State<FormScreen> {
                             width: double.infinity,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.blue),
                             ),
                             child: Text(
                               'Selected Option: $selectedType',
                               style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                                  TextStyle(fontSize: 18, color: Colors.black),
                             ),
                           ),
                           DropdownButton<String>(
-                            dropdownColor: Colors.blue,
+                            dropdownColor: Colors.white,
                             isExpanded: true,
                             value: selectedType,
                             onChanged: (String? newValue) {
@@ -178,12 +214,12 @@ class _FormScreenState extends State<FormScreen> {
                             },
                             hint: Container(
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white),
+                                border: Border.all(color: Colors.black),
                               ),
                               child: Text(
                                 "Select Type",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -193,7 +229,7 @@ class _FormScreenState extends State<FormScreen> {
                                 value: value,
                                 child: Text(
                                   value,
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(color: Colors.black),
                                 ),
                               );
                             }).toList(),
@@ -204,34 +240,7 @@ class _FormScreenState extends State<FormScreen> {
                     SizedBox(height: 20),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.blue)),
-                  child: TextFormField(
-                    controller: detailController,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      labelText: "Description",
-                      labelStyle: TextStyle(
-                        color: Colors.white,
-                      ),
-                      alignLabelWithHint: true,
-                      contentPadding: EdgeInsets.symmetric(vertical: 20.0),
-                      hintText: "Enter your description here",
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                      ),
-                      filled: true,
-                      fillColor: Colors.black,
-                    ),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                  ),
-                ),
+               
                 SizedBox(height: 20),
                 TextButton(
                     style: ButtonStyle(
@@ -271,6 +280,14 @@ class _FormScreenState extends State<FormScreen> {
                       width: double.infinity,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
+                        boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 0.1,
+                              spreadRadius: 1,
+                              offset: Offset(0, 1),
+                            ),
+                          ],
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(10),
                       ),
